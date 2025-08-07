@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-ENV http_proxy=http://127.0.0.1:10808
-ENV https_proxy=http://127.0.0.1:10808
+# ENV http_proxy=http://127.0.0.1:10808
+# ENV https_proxy=http://127.0.0.1:10808
 
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
