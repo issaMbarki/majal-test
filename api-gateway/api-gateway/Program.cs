@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173")
+            policy.WithOrigins("http://client-app:80")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -28,7 +28,7 @@ builder.Services.AddReverseProxy()
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "http://localhost:8080/realms/smart-app"; // URL de ton realm
+        options.Authority = "http://keycloak:8081/realms/smart-app"; // URL de ton realm
         options.RequireHttpsMetadata = false; // pour le dev local
 
 
@@ -36,7 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateAudience = false, // facultatif pour Keycloak
             ValidateIssuer = true,
-            ValidIssuer = "http://localhost:8080/realms/smart-app",
+            ValidIssuer = "http://keycloak:8081/realms/smart-app",
         };
     });
 
