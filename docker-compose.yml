@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  gateway:
+    build:
+      context: ./api-gateway/api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-service
+      - product-service
+    networks:
+      - host
+
+  user-service:
+    build:
+      context: ./users-service
+    ports:
+      - "5001:5001"
+    networks:
+      - host
+
+  product-service:
+    build:
+      context: ./products-service
+    ports:
+      - "5002:5002"
+    networks:
+      - host
+
+networks:
+  app-network:
+    driver: bridge
